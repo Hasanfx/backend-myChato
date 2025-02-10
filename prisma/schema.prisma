@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator json_server {
+  provider = "prisma-client-js"
+  outputFileName=db.json
+}
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db.json"
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+
+  sentMessages   Message[] @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String
+  senderId  Int
+  sender    User     @relation("SentMessages", fields: [senderId], references: [id])
+  recipientId Int
+  recipient  User   @relation("ReceivedMessages", fields: [recipientId], references: [id])
+  createdAt DateTime @default(now())
+}
