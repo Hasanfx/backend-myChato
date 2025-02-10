@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "build": "tsc",
-    "start": "ts-node dist/server.js",
-    "dev": "ts-node-dev src/server.ts"
-  },
+"scripts": {
+  "build": "tsc", 
+  "start": "node dist/server.js", 
+  "dev": "ts-node-dev src/server.ts"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
